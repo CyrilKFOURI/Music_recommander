@@ -4,6 +4,6 @@ __pycache__/
 *.csv
 .DS_Store
 .env
-data/
-models/
+/data/
+/models/
 src/__pycache__/

@@ -26,7 +26,7 @@ LOCAL_SOURCE_FILE = NOTEBOOK_DIR / "bbc-news-data.csv"
 
 # --- AWS Configuration ---
 # Remplacez 'votre-bucket-name' par le nom réel de votre bucket si vous n'utilisez pas de variable d'environnement
-S3_BUCKET_NAME = os.getenv("S3_BUCKET_NAME", "votre-bucket-name") 
+S3_BUCKET_NAME = os.getenv("S3_BUCKET_NAME", "groupe2-data") 
 
 # Paths in S3
 S3_DATA_RAW_KEY = "data/raw/bbc-news-data.csv"

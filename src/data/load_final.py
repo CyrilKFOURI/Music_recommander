@@ -12,6 +12,7 @@ def load_final():
     print("Starting Final Data Loading...")
     
     input_path = config.CLEAN_DATA_FILE
+    parquet_path = config.FINAL_DATA_PARQUET
     
     if not input_path.exists():
         print(f"Error: Processed file not found at {input_path}")
