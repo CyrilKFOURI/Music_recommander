@@ -56,6 +56,11 @@ jobs:
       - name: Build Docker Image
         run: docker build -t music-recommender:${{ github.sha }} .
 
+      - name: Ensure ECR Repository exists
+        if: env.AWS_ACCESS_KEY_ID != ''
+        run: |
+          aws ecr describe-repositories --repository-names music-recommender || aws ecr create-repository --repository-name music-recommender
+
       - name: Push to Amazon ECR (if configured)
         if: env.AWS_ACCESS_KEY_ID != ''
         env:
