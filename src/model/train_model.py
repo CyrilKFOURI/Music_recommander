@@ -22,7 +22,10 @@ def train_and_evaluate():
     
     # --- AWS: Download Data from S3 if needed ---
     # Unless we just created it in a previous step, we might want to ensure we pull the latest from S3
-    if os.getenv("ENV") == "AWS":
+    # If the file already exists (from previous pipeline step), skip download
+    if input_path.exists():
+        print(f"Data found locally at {input_path}, skipping download.")
+    elif os.getenv("ENV") == "AWS":
         import boto3
         print(f"[AWS] Downloading training data from s3://{config.S3_BUCKET_NAME}/{config.S3_DATA_FINAL_KEY}...")
         try:

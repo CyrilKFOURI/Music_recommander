@@ -23,9 +23,20 @@ def download_data():
     if os.getenv("ENV") == "AWS":
         # Cloud Logic
         import boto3
-        s3 = boto3.client('s3')
-        print(f"Downloading from S3: s3://{config.S3_BUCKET_NAME}/{config.S3_DATA_RAW_KEY}")
-        s3.download_file(config.S3_BUCKET_NAME, config.S3_DATA_RAW_KEY, str(dest_path))
+        try:
+            print(f"Downloading from S3: s3://{config.S3_BUCKET_NAME}/{config.S3_DATA_RAW_KEY}")
+            s3 = boto3.client('s3')
+            s3.download_file(config.S3_BUCKET_NAME, config.S3_DATA_RAW_KEY, str(dest_path))
+        except Exception as e:
+            print(f"[AWS] S3 Download Failed: {e}")
+            print("Attempting local fallback for CI/CD initialization...")
+            source_path = config.LOCAL_SOURCE_FILE # Should be Notebook/bcc-news-data.csv
+            if source_path.exists():
+                shutil.copy2(source_path, dest_path)
+                print(f"Fallback: Scaled from {source_path} to {dest_path}")
+            else:
+                print("FATAL: No data found in S3 or local directory.")
+                raise e
     else:
         # Local Logic (Simulation)
         source_path = config.LOCAL_SOURCE_FILE
