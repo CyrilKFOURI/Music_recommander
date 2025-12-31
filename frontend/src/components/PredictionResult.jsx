@@ -3,21 +3,21 @@ import React from 'react'
 const PredictionResult = ({ result, onReset }) => {
     return (
         <div style={{ animation: 'fadeIn 0.8s ease' }}>
-            <h2 style={{ 
-                color: 'var(--text-muted)', 
-                textTransform: 'uppercase', 
-                letterSpacing: '2px', 
+            <h2 style={{
+                color: 'var(--text-muted)',
+                textTransform: 'uppercase',
+                letterSpacing: '2px',
                 fontSize: '0.9rem',
-                marginBottom: '1rem' 
+                marginBottom: '1rem'
             }}>
                 Detected Category
             </h2>
-            
-            <div style={{ 
-                fontSize: '4rem', 
-                fontWeight: '900', 
+
+            <div style={{
+                fontSize: '4rem',
+                fontWeight: '900',
                 background: 'linear-gradient(to right, #fff, var(--primary))',
-                -webkit-background-clip: 'text',
+                WebkitBackgroundClip: 'text',
                 backgroundClip: 'text',
                 color: 'transparent',
                 marginBottom: '1.5rem',
@@ -25,12 +25,12 @@ const PredictionResult = ({ result, onReset }) => {
             }}>
                 {result.category}
             </div>
-            
-            <div style={{ 
-                display: 'flex', 
-                alignItems: 'center', 
-                justifyContent: 'center', 
-                gap: '1rem', 
+
+            <div style={{
+                display: 'flex',
+                alignItems: 'center',
+                justifyContent: 'center',
+                gap: '1rem',
                 marginBottom: '3rem',
                 fontSize: '1.2rem',
                 background: 'rgba(255,255,255,0.05)',
@@ -40,8 +40,8 @@ const PredictionResult = ({ result, onReset }) => {
                 margin: '0 auto 3rem auto'
             }}>
                 <span>Confidence:</span>
-                <span style={{ 
-                    color: 'var(--success)', 
+                <span style={{
+                    color: 'var(--success)',
                     fontWeight: 'bold',
                     textShadow: '0 0 10px rgba(0, 255, 157, 0.5)'
                 }}>
@@ -49,7 +49,7 @@ const PredictionResult = ({ result, onReset }) => {
                 </span>
             </div>
 
-            <button 
+            <button
                 onClick={onReset}
                 style={{
                     background: 'transparent',
